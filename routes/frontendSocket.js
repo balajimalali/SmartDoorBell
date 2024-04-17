@@ -20,7 +20,7 @@ function handleFrontendWebSocket(io) {
 
         cache.set("latestMessage", newMessage);
 
-        io.of('/iot').emit('setMessage', message)
+        io.of('/').emit('setMessage', message)
         socket.emit('updateStatus', 'success')
       }
       catch(error){
@@ -40,7 +40,7 @@ function handleFrontendWebSocket(io) {
         });
         cache.set("latestMessage", message);
 
-        io.of('/iot').emit('setMessage', message)
+        io.of('/').emit('setMessage', message)
         socket.emit('updateStatus', 'success')
       }
       catch(error){

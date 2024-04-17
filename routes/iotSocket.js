@@ -3,7 +3,7 @@ const {prisma, getLatestMessage} = require('../db.js');
 
 
 function handleIotWebSocket(io) {
-  const ioIOT = io.of('/iot');
+  const ioIOT = io.of('/');
 
   ioIOT.on('connection', async (socket) => {
     console.log('A device connected');
