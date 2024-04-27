@@ -14,12 +14,12 @@ const UpdateDisplayPage = (props) => {
   function submitHandler(){
     props.socket.emit("messageUpdate", message);
     setMessage("");
-    setTimeout(()=>{
+  }
+
+  props.socket.on('updateStatus', (status)=>{
       fetchLatestMessage();
       fetchMessages();
-    }, 2000);
-    
-  }
+  });
 
   const fetchLatestMessage = async () => {
     try {
@@ -58,17 +58,18 @@ const UpdateDisplayPage = (props) => {
     // fetchMessages();
   };
 
-  const handleDeleteMessage = (messageId) => {
+  const handleDeleteMessage = async (messageId) => {
     // Send request to delete the message in the backend
-    fetch(`/api/messages/${messageId}`, {
+    await fetch(process.env.REACT_APP_URL+`/messages/${messageId}`, {
       method: 'DELETE'
     })
       .then(response => response.json())
       .then(data => {
         console.log('Message deleted successfully:', data);
-        setMessages(messages.filter(message => message.id !== messageId));
-      })
-      .catch(error => console.error('Error deleting message:', error));
+    })
+    .catch(error => console.error('Error deleting message:', error));
+
+    fetchMessages();
   };
 
   return (

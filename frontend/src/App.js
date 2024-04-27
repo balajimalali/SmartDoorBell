@@ -25,7 +25,7 @@ function App() {
         <Route path="/">
           <Route index element={<UpdateDisplayPage socket={socket} />} />
           <Route path="/history" element={<VisitorsHistoryPage />} />
-          <Route path="/settings" element={<SettingsPage />} />
+          <Route path="/settings" element={<SettingsPage socket={socket}/>} />
         </Route>
       </Routes>
     </BrowserRouter>

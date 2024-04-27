@@ -20,7 +20,7 @@ function handleFrontendWebSocket(io) {
 
         cache.set("latestMessage", newMessage);
 
-        io.of('/').emit('setMessage', message)
+        io.of('/').emit('setMessage', newMessage)
         socket.emit('updateStatus', 'success')
       }
       catch(error){
@@ -47,6 +47,12 @@ function handleFrontendWebSocket(io) {
         console.log(error)
       }
 
+    });
+
+    socket.on('toggleBuzzer', (status) => {
+      // Emit updated buzzer status to all clients
+      cache.set("buzzer", status);
+      io.of('/').emit("buzzer", status);
     });
 
   });
