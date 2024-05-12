@@ -31,7 +31,7 @@ function VisitorHistoryPage() {
         {visitorHistory.map((visitor) => (
           <li key={visitor.id} className="list-group-item">
             <p className="mb-1">Visit Time: {formatVisitorTime(visitor.visitTime)}</p>
-            <p className="mb-0">Message: {visitor.message}</p>
+            {/* <p className="mb-0">Message: {visitor.message}</p> */}
           </li>
         ))}
       </ul>

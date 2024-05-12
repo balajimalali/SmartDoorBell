@@ -1,8 +1,20 @@
 const { PrismaClient } = require('@prisma/client');
 const NodeCache = require( "node-cache" );
+const nodemailer = require('nodemailer');
 
 const myCache = new NodeCache();
 const prisma = new PrismaClient();
+
+const transporter = nodemailer.createTransport({
+  service: 'Gmail',  
+  auth: {
+    user: process.env.EMAIL,
+    pass: process.env.EMAIL_PASS,
+  },
+  tls: {
+    rejectUnauthorized: false,
+  },
+});
 
 // Function to get the latest message
 
@@ -21,9 +33,12 @@ const getAllMessages = async () => {
   return messages;
 };
 
+
+
 module.exports = {
 	"prisma": prisma,
 	"getLatestMessage": getLatestMessage,
   "getAllMessages": getAllMessages,
   "cache": myCache,
+  "mailer": transporter,
 }
