@@ -1,4 +1,3 @@
-# SmartDoorBell
 Code:  [https://github.com/balajimalali/SmartDoorBell\_Backend](https://github.com/balajimalali/SmartDoorBell\_Backend)
 
 StartUp:  
